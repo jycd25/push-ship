@@ -50,7 +50,7 @@ npm i -g github:jycd25/push-ship
 Once the plugin is installed, you do not need to learn the config or the CLI.
 Open Claude Code in the repo you build in and say what you want:
 
-> Use push-ship to ship `servers/`, `skills/` and `README.md` to `../thousand-words`.
+> Use push-ship to ship `servers/`, `skills/` and `README.md` to `../my-app-public`.
 
 Claude creates `push-ship.config.json` for you, runs a dry run, shows what would
 move, and pushes. From then on, every time Claude finishes a turn in that repo,
@@ -59,7 +59,7 @@ the Stop hook pushes whatever changed. You will see a short line like
 
 Other things you can just say:
 
-- "Ship this." / "Push the changes to thousand-words."
+- "Ship this." / "Push the changes to the public repo."
 - "Don't ship anything under `skills/internal/`." → Claude adds an ignore pattern.
 - "Also ship `docs/cookbook.md`, and ship `docs/public-README.md` as the README."
 - "What would push-ship send right now?" → Claude runs a dry run and reports.
@@ -78,21 +78,21 @@ so a plain "ship it" at the end of any task is enough.
 ### Config
 
 Inside the repo you build in, run `push-ship --init` (or `/push-ship --init`) and
-edit the generated `push-ship.config.json`. A real example — a private monorepo
-that ships a public Claude Code plugin:
+edit the generated `push-ship.config.json`. An example — a private working repo
+that ships a public release repo next to it:
 
 ```json
 {
   "onStop": "push",
   "ignore": ["*.log", "**/*.tmp", "drafts/"],
   "targets": [
-    { "src": "servers",                   "dest": "../thousand-words/servers" },
-    { "src": "skills",                    "dest": "../thousand-words/skills", "ignore": ["*-internal.md"] },
-    { "src": "hooks",                     "dest": "../thousand-words/hooks" },
-    { "src": "docs/cookbook.md",          "dest": "../thousand-words/docs" },
-    { "src": ".claude-plugin/plugin.json","dest": "../thousand-words/.claude-plugin" },
-    { "src": "RELEASE-NOTES.md",          "dest": "../thousand-words" },
-    { "src": "docs/public-README.md",     "dest": "../thousand-words", "rename": "README.md" }
+    { "src": "servers",                   "dest": "../my-app-public/servers" },
+    { "src": "skills",                    "dest": "../my-app-public/skills", "ignore": ["*-internal.md"] },
+    { "src": "hooks",                     "dest": "../my-app-public/hooks" },
+    { "src": "docs/cookbook.md",          "dest": "../my-app-public/docs" },
+    { "src": ".claude-plugin/plugin.json","dest": "../my-app-public/.claude-plugin" },
+    { "src": "RELEASE-NOTES.md",          "dest": "../my-app-public" },
+    { "src": "docs/public-README.md",     "dest": "../my-app-public", "rename": "README.md" }
   ]
 }
 ```

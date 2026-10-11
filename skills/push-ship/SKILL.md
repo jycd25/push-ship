@@ -1,6 +1,6 @@
 ---
 name: push-ship
-description: Use when the user asks to push, ship, sync, mirror, publish, or copy this project's files to another directory or repo (e.g. "ship this", "push to thousand-words", "sync the skills dir"), or asks to set up / change push-ship.config.json, ignore files from the sync, or asks why files did or didn't get pushed.
+description: Use when the user asks to push, ship, sync, mirror, publish, or copy this project's files to another directory or repo (e.g. "ship this", "push to the public repo", "sync the skills dir"), or asks to set up / change push-ship.config.json, ignore files from the sync, or asks why files did or didn't get pushed.
 ---
 
 # push-ship
