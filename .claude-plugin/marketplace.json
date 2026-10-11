@@ -9,5 +9,6 @@
       "source": "./",
       "description": "Build in one repo, ship a clean subset to another: per-project config, ignore globs, /push-ship command, auto-push Stop hook."
     }
-  ]
+  ],
+  "description": "jycd25's Claude Code plugins: push-ship (build in one repo, ship a clean subset to another)."
 }
