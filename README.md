@@ -37,13 +37,14 @@ As a Claude Code plugin (once, then it works in every project that has a config)
 
 For local development of the plugin itself: `claude --plugin-dir /path/to/push-ship`.
 
-As a plain CLI, no Claude Code needed:
+As a terminal command (separate from the plugin, which only installs into Claude Code):
 
 ```
-npx github:jycd25/push-ship --help
-# or
-npm i -g github:jycd25/push-ship
+npm i -g github:jycd25/push-ship     # puts `push-ship` on your PATH
+npx github:jycd25/push-ship --help   # or run without installing
 ```
+
+Node.js 18+ is the only prerequisite for both.
 
 ## Use it with Claude Code
 
@@ -74,7 +75,9 @@ At the start of each session Claude is told which targets this repo ships to,
 so a plain "ship it" at the end of any task is enough.
 
 Once the source and target directories are configured, you don't need Claude
-for minor or routine changes: just type `push-ship` in the command line to sync.
+for minor or routine changes: just type `push-ship` in the terminal to sync.
+The plugin does not put `push-ship` on your PATH, so install the CLI once with
+`npm i -g github:jycd25/push-ship` (Node.js is the only prerequisite).
 
 ## Use it manually
 
