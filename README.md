@@ -172,4 +172,4 @@ entry points, `hooks/hooks.json`, `commands/push-ship.md`,
 
 ## License
 
-MIT
+Apache License 2.0. See [LICENSE](LICENSE).

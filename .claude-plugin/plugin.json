@@ -6,7 +6,7 @@
     "name": "jycd25"
   },
   "repository": "https://github.com/jycd25/push-ship",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "keywords": [
     "sync",
     "copy",
