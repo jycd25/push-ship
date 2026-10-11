@@ -45,15 +45,40 @@ npx github:jycd25/push-ship --help
 npm i -g github:jycd25/push-ship
 ```
 
-## Set up a working repo
+## Ask Claude Code
 
-Inside the repo you build in:
+Once the plugin is installed, you do not need to learn the config or the CLI.
+Open Claude Code in the repo you build in and say what you want:
 
-```
-/push-ship --init
-```
+> Use push-ship to ship `servers/`, `skills/` and `README.md` to `../thousand-words`.
 
-Edit the generated `push-ship.config.json`. A real example — a private monorepo
+Claude creates `push-ship.config.json` for you, runs a dry run, shows what would
+move, and pushes. From then on, every time Claude finishes a turn in that repo,
+the Stop hook pushes whatever changed. You will see a short line like
+`push-ship pushed: 1 added, 2 updated, 0 removed` with the files listed.
+
+Other things you can just say:
+
+- "Ship this." / "Push the changes to thousand-words."
+- "Don't ship anything under `skills/internal/`." → Claude adds an ignore pattern.
+- "Also ship `docs/cookbook.md`, and ship `docs/public-README.md` as the README."
+- "What would push-ship send right now?" → Claude runs a dry run and reports.
+- "Why didn't `template.html` get pushed?" → Claude checks the manifest and ignore rules.
+- "Stop auto-pushing, I'll run it myself." → Claude sets `"onStop": "off"`.
+- "Add `.push-ship-manifest.json` to .gitignore."
+
+`/push-ship` is also available as a slash command when you want an explicit push:
+`/push-ship`, `/push-ship --dry-run`, `/push-ship template`, `/push-ship --init`.
+
+At the start of each session Claude is told which targets this repo ships to,
+so a plain "ship it" at the end of any task is enough.
+
+## Use it manually
+
+### Config
+
+Inside the repo you build in, run `push-ship --init` (or `/push-ship --init`) and
+edit the generated `push-ship.config.json`. A real example — a private monorepo
 that ships a public Claude Code plugin:
 
 ```json
@@ -87,20 +112,7 @@ whitelist what ships. `ignore` is for trimming inside a directory you do ship.
 Add `.push-ship-manifest.json` to the working repo's `.gitignore`; it is
 per-machine state. Deleting it forces a full re-push, which is harmless.
 
-## What the plugin does
-
-- **Stop hook** — after each Claude turn, pushes changed files for the project
-  in the cwd and shows a one-line summary plus the files that moved. Silent
-  when nothing changed. Does nothing in projects without a config.
-- **SessionStart hook** — tells Claude the project's targets exist and that
-  pushes happen automatically, so "ship this" or "sync the skills dir" works in
-  plain language.
-- **`/push-ship [names...] [--dry-run] [--init]`** — push on demand, preview,
-  or scaffold a config.
-- **Skill** — teaches Claude the config format and ignore rules, so it can add a
-  target, exclude a file, or explain why something was or wasn't pushed.
-
-## CLI
+### CLI
 
 ```
 push-ship                  # push every changed file, mirror deletions
@@ -124,6 +136,18 @@ missing at dest. The manifest is updated only for files actually pushed, so a
 filtered run never marks other pending changes as synced. On full (unfiltered)
 runs, files that disappeared from a directory source are also removed from dest
 and the manifest, so the shipped repo mirrors the shipped subset exactly.
+
+### What the plugin installs
+
+- **Stop hook** — after each Claude turn, pushes changed files for the project
+  in the cwd and shows a one-line summary plus the files that moved. Silent
+  when nothing changed. Does nothing in projects without a config.
+- **SessionStart hook** — tells Claude the project's targets exist and that
+  pushes happen automatically.
+- **`/push-ship [names...] [--dry-run] [--init]`** — push on demand, preview,
+  or scaffold a config.
+- **Skill** — teaches Claude the config format and ignore rules, so it can add a
+  target, exclude a file, or explain why something was or wasn't pushed.
 
 ## Programmatic use
 
