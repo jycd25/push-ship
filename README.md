@@ -73,6 +73,9 @@ Other things you can just say:
 At the start of each session Claude is told which targets this repo ships to,
 so a plain "ship it" at the end of any task is enough.
 
+Once the source and target directories are configured, you don't need Claude
+for minor or routine changes: just type `push-ship` in the command line to sync.
+
 ## Use it manually
 
 ### Config
