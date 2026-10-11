@@ -45,7 +45,7 @@ npx github:jycd25/push-ship --help
 npm i -g github:jycd25/push-ship
 ```
 
-## Ask Claude Code
+## Use it with Claude Code
 
 Once the plugin is installed, you do not need to learn the config or the CLI.
 Open Claude Code in the repo you build in and say what you want:
