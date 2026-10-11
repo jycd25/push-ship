@@ -1,0 +1,13 @@
+{
+  "name": "jycd25",
+  "owner": {
+    "name": "jycd25"
+  },
+  "plugins": [
+    {
+      "name": "push-ship",
+      "source": "./",
+      "description": "Build in one repo, ship a clean subset to another: per-project config, ignore globs, /push-ship command, auto-push Stop hook."
+    }
+  ]
+}

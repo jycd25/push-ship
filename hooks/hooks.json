@@ -1,0 +1,27 @@
+{
+  "description": "push-ship: sync changed files to configured target dirs after each turn; announce config at session start.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/scripts/hook-session-start.mjs\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/scripts/hook-stop.mjs\"",
+            "timeout": 60
+          }
+        ]
+      }
+    ]
+  }
+}

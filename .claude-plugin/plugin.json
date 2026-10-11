@@ -1,0 +1,18 @@
+{
+  "name": "push-ship",
+  "version": "0.1.0",
+  "description": "Build in one repo, ship from another. Pushes only the files you list (sources, targets, ignore globs in a per-project push-ship.config.json) to the shipped repo after every turn, so design docs, AI skills, scratch code and private tests never leak. /push-ship command + Stop hook.",
+  "author": {
+    "name": "jycd25"
+  },
+  "repository": "https://github.com/jycd25/push-ship",
+  "license": "MIT",
+  "keywords": [
+    "sync",
+    "copy",
+    "mirror",
+    "deploy",
+    "files",
+    "hook"
+  ]
+}

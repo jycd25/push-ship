@@ -1,0 +1,41 @@
+{
+  "name": "push-ship",
+  "version": "0.1.0",
+  "description": "Build in one repo, ship from another. Claude Code plugin + CLI that pushes only the files you list to a shipped repo, so design docs, AI skills, scratch code and private tests never leak.",
+  "type": "module",
+  "bin": {
+    "push-ship": "./scripts/push-ship.mjs"
+  },
+  "exports": "./src/index.mjs",
+  "files": [
+    "LICENSE",
+    "scripts",
+    "src",
+    "commands",
+    "skills",
+    "hooks",
+    ".claude-plugin",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [
+    "sync",
+    "copy",
+    "mirror",
+    "deploy",
+    "files",
+    "cli",
+    "claude-code",
+    "plugin"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jycd25/push-ship.git"
+  }
+}
