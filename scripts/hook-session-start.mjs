@@ -20,7 +20,8 @@ process.stdin.on('end', () => {
         : 'Automatic push on stop is off; run /push-ship to push.';
     process.stdout.write(
       `push-ship is configured for this project (${cfg.configPath}):\n${lines.join('\n')}\n${auto} ` +
-      'Use /push-ship [names] [--dry-run] to push on demand. Edit push-ship.config.json to change targets or ignore patterns.\n',
+      'Use /push-ship [names] [--dry-run] to push on demand. Edit push-ship.config.json to change targets or ignore patterns. ' +
+      'Only product files ship: never add CLAUDE.md, .claude/, design docs or the source .gitignore as targets unless the user explicitly asks to ship them.\n',
     );
   } catch (err) {
     process.stdout.write(`push-ship: config error — ${err.message}\n`);

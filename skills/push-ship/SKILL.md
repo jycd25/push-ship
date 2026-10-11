@@ -15,6 +15,40 @@ in `.push-ship-manifest.json` so only changed content is copied. On full runs
 it also removes files at the target that vanished from the source. It never
 runs git in the target.
 
+## What never ships
+
+The target is usually public. Before adding a `src`, ask whether the file
+exists for the product or for the way the user works on it. Only product files
+ship; when in doubt, leave it out and say so.
+
+- Never add these as targets on your own: `CLAUDE.md`, `AGENTS.md`, `.claude/`,
+  `.superpowers/`, skills, agents and prompts used to build the project,
+  design docs, plans, experiment logs, scratch files, `.env*`, the working
+  repo's `.gitignore`, or push-ship's own files. A request that mentions one of
+  them is not a request to ship it: "move the README into CLAUDE.md" means
+  edit CLAUDE.md in the working repo. Ship such a file only when the user names
+  it and says it should land in the target.
+- Do not ship the working repo's dotfiles verbatim. Its `.gitignore` lists what
+  the user hides (`.claude/worktrees/`, `run-state.md`, ...) and so reveals it.
+  If the target needs a `.gitignore`, write a separate `gitignore.public` with
+  only product entries and ship it with `"rename": ".gitignore"`.
+- Shipped text leaks too. When you add a target, and whenever a push touches a
+  README, a doc or a code comment, grep the target for references to files that
+  were not shipped and reword or unlink them in the source file so the fix
+  re-ships:
+
+  ```
+  grep -rnIE 'CLAUDE\.md|AGENTS\.md|\.claude/|docs/|superpowers|run-state|push-ship' <dest> --exclude-dir=.git --exclude-dir=node_modules
+  ```
+
+- Removing a target from the config does not remove its copy at dest, and the
+  manifest keeps its entry. Delete the file at dest yourself, drop its entry
+  from `.push-ship-manifest.json`, and check `git log` in the target: if the
+  file is already committed there, tell the user, since only they decide
+  whether to amend or rewrite history.
+- Before the first push to a new target, run `--dry-run` and read the whole
+  file list against this section, not just the count.
+
 ## Commands
 
 All go through the engine shipped with this plugin:
@@ -73,7 +107,8 @@ Lives at the project root (the directory it sits in becomes the root). Example:
 - `onStop`: `"push"` (default), `"report"`, or `"off"`.
 
 When the user asks to add a sync target or ignore something, edit this file
-directly, then offer a `--dry-run` to confirm.
+directly, check the new `src` against "What never ships", then offer a
+`--dry-run` to confirm.
 
 ## State
 

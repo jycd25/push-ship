@@ -1,6 +1,6 @@
 {
   "name": "push-ship",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Build in one repo, ship from another. Claude Code plugin + CLI that pushes only the files you list to a shipped repo, so design docs, AI skills, scratch code and private tests never leak.",
   "type": "module",
   "bin": {
